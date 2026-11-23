@@ -65,7 +65,8 @@ header {
   align-items: center;
   gap: 6px;
   padding: 48px 20px 24px;
-  background: var(--c-ink);
+  background: linear-gradient(120deg, #172554, #164e63);
+  border-bottom: 5px solid #2dd4bf;
   color: #fff;
   text-align: center;
 }
