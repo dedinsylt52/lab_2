@@ -24,11 +24,13 @@ const jobs = [
 
 function Experience() {
   return (
-    <section id="experience">
-      <h2>Досвід роботи</h2>
-      {jobs.map((job) => (
-        <Job key={job.title} {...job} />
-      ))}
+    <section id="experience" className="rounded-2xl bg-white p-8 shadow-lg ring-1 ring-stone-200 dark:bg-slate-900 dark:ring-slate-800 transition hover:shadow-xl">
+      <h2 className="mb-5 inline-block border-b-4 border-brand pb-1 font-display text-2xl font-bold">Досвід роботи</h2>
+      <div className="space-y-6">
+        {jobs.map((job) => (
+          <Job key={job.title} {...job} />
+        ))}
+      </div>
     </section>
   )
 }

@@ -1,0 +1,312 @@
+:root {
+  --c-bg: #f4f1ea;
+  --c-surface: #ffffff;
+  --c-ink: #1f2430;
+  --c-muted: #5b6272;
+  --c-accent: #c2410c;
+  --c-accent-dark: #9a3412;
+  --c-line: #e3ddd0;
+  --radius: 12px;
+  --gap: 24px;
+  --font-body: "Segoe UI", Roboto, Arial, sans-serif;
+  --font-head: Georgia, "Times New Roman", serif;
+}
+
+/* ---------- 2. Скидання та box-sizing ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;          /* padding і border входять у width */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  line-height: 1.6;
+  color: var(--c-ink);
+  background: var(--c-bg);
+}
+
+/* ---------- 3. Селектори тегів ---------- */
+h1, h2, h3 {
+  font-family: var(--font-head);
+  line-height: 1.2;
+  margin: 0 0 12px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  padding-bottom: 8px;
+  border-bottom: 3px solid var(--c-accent);   /* явна межа */
+  display: inline-block;
+}
+
+h3 { font-size: 1.15rem; margin-top: 16px; }
+
+p  { margin: 0 0 10px; }
+
+ul, ol { margin: 0 0 10px; padding-left: 22px; }
+
+a {
+  color: var(--c-accent);
+  text-decoration: none;
+  transition: color .2s, background-color .2s;
+}
+
+time { font-weight: 600; }
+
+address { font-style: normal; }
+
+/* ---------- 4. Макет: Flexbox (шапка) + Grid (основна частина) ---------- */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 48px 20px 24px;
+  background: var(--c-ink);
+  color: #fff;
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;                    /* меню в рядок */
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 18px 0 0;
+  padding: 0;
+}
+
+main {
+  display: grid;                    /* сітка карток */
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    "about  about"
+    "exp    edu"
+    "exp    skills";
+  gap: var(--gap);
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 20px;
+}
+
+/* ---------- 5. Селектори ID ---------- */
+#about      { grid-area: about; }
+#experience { grid-area: exp; }
+#education  { grid-area: edu; }
+#skills     { grid-area: skills; }
+
+#contacts {
+  background: var(--c-ink);
+  color: #e5e7eb;
+  padding: 32px 20px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+#contacts h2 { border-bottom-color: #fdba74; }
+
+/* ---------- 6. Селектори класів (компоненти) ---------- */
+.card {
+  background: var(--c-surface);
+  margin: 0;
+  padding: 24px 28px;
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .05);
+}
+
+.subtitle {
+  color: #fdba74;
+  font-size: 1.1rem;
+  letter-spacing: .05em;
+}
+
+.nav-link {
+  display: block;
+  padding: 6px 14px;
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: 999px;
+  color: #fff;
+}
+
+.job {
+  padding: 14px 0 6px 16px;
+  margin-bottom: 12px;
+  border-left: 3px solid var(--c-line);
+}
+
+.meta { color: var(--c-muted); font-size: .95rem; }
+
+.skills-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skills-list li {
+  padding: 4px 12px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 6px;
+}
+
+/* ---------- 7. Селектори атрибутів ---------- */
+a[href^="mailto:"]::before { content: "✉ "; }
+a[href^="tel:"]::before    { content: "☎ "; }
+a[target="_blank"]::after  { content: " ↗"; font-size: .8em; }
+#contacts a                { color: #fdba74; }
+time[datetime]             { color: var(--c-accent-dark); }
+
+/* ---------- 8. Псевдокласи ---------- */
+.nav-link:hover {
+  background: #fff;
+  color: var(--c-ink);
+}
+
+a:focus-visible {
+  outline: 2px dashed var(--c-accent);
+  outline-offset: 3px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .1);
+}
+
+.job:first-of-type { border-left-color: var(--c-accent); }
+
+.card li:nth-child(odd) { color: var(--c-ink); }
+
+/* ---------- 9. Медіазапит: вузький екран ---------- */
+@media (max-width: 700px) {
+  main {
+    grid-template-columns: 1fr;          /* одна колонка */
+    grid-template-areas:
+      "about"
+      "exp"
+      "edu"
+      "skills";
+    gap: 16px;
+    padding: 0 12px;
+  }
+
+  nav ul {
+    flex-direction: column;              /* меню стовпчиком */
+    align-items: stretch;
+    width: 100%;
+  }
+
+  h1 { font-size: 1.8rem; }
+
+  .card { padding: 18px; }
+}
+
+/* =========================================================
+   ЛР №4 — стилі для JavaScript-функцій
+   ========================================================= */
+
+/* ---------- 10. Кнопки ---------- */
+.theme-toggle,
+.btn {
+  margin-top: 10px;
+  padding: 8px 18px;
+  border: 1px solid #fdba74;
+  border-radius: 999px;
+  background: transparent;
+  color: #fdba74;
+  font: inherit;
+  cursor: pointer;
+}
+.theme-toggle:hover { background: #fdba74; color: var(--c-ink); }
+
+.btn { background: var(--c-accent); border-color: var(--c-accent); color: #fff; }
+.btn:hover { background: var(--c-accent-dark); }
+
+/* ---------- 11. Відгуки ---------- */
+#reviews { grid-column: 1 / -1; }
+.reviews-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+.review {
+  padding: 16px;
+  border: 1px solid var(--c-line);
+  border-radius: 8px;
+  background: var(--c-bg);
+}
+.review h3 { margin-top: 0; font-size: 1rem; text-transform: capitalize; }
+
+/* ---------- 12. Системна інформація у футері ---------- */
+.sys-info { max-width: 900px; margin: 24px auto 0; text-align: left; }
+.storage-list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 4px 16px;
+  font-size: .85rem;
+}
+.storage-list dt { color: #fdba74; font-weight: 600; }
+.storage-list dd { margin: 0; word-break: break-all; }
+
+/* ---------- 13. Модальне вікно ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, .55);
+  z-index: 100;
+}
+.modal[hidden] { display: none; }
+.modal__box {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  padding: 28px;
+  border-radius: var(--radius);
+  background: var(--c-surface);
+  color: var(--c-ink);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, .3);
+}
+.modal__close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  border: 0;
+  background: none;
+  font-size: 1.6rem;
+  color: var(--c-muted);
+  cursor: pointer;
+}
+.feedback-form { display: flex; flex-direction: column; gap: 12px; }
+.feedback-form label { display: flex; flex-direction: column; gap: 4px; font-weight: 600; }
+.feedback-form input,
+.feedback-form textarea {
+  padding: 8px 10px;
+  border: 1px solid var(--c-line);
+  border-radius: 6px;
+  background: var(--c-bg);
+  color: var(--c-ink);
+  font: inherit;
+}
+
+/* ---------- 14. Нічна тема ---------- */
+body.dark-mode {
+  --c-bg: #111318;
+  --c-surface: #1b1f27;
+  --c-ink: #e5e7eb;
+  --c-muted: #9aa3b2;
+  --c-line: #2c3240;
+}
+body.dark-mode header,
+body.dark-mode #contacts { background: #0b0d12; }
+body.dark-mode .skills-list li { background: #2a1d14; border-color: #7c2d12; }
+body.dark-mode .theme-toggle:hover { color: #0b0d12; }
+body.dark-mode .nav-link:hover { color: #0b0d12; }

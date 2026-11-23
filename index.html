@@ -5,45 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Резюме веброзробника Сергій Петруняк">
   <title>Резюме — Сергій Петруняк</title>
+
+  <!-- 1) Зовнішній (external) спосіб: основна частина стилів -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- 2) Внутрішній (internal) спосіб -->
+  <style>
+    .highlight {
+      background: linear-gradient(transparent 60%, #fed7aa 60%);
+      padding: 0 2px;
+    }
+    body.dark-mode .highlight {
+      background: linear-gradient(transparent 60%, #7c2d12 60%);
+      color: #fed7aa;
+    }
+  </style>
 </head>
 <body>
   <header>
     <h1>Сергій Петруняк</h1>
-    <p>Junior веброзробник</p>
+    <p class="subtitle">Junior веброзробник</p>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Перемкнути тему">🌙 Нічна тема</button>
     <nav>
       <ul>
-        <li><a href="#about">Про мене</a></li>
-        <li><a href="#experience">Досвід роботи</a></li>
-        <li><a href="#education">Освіта</a></li>
-        <li><a href="#skills">Навички</a></li>
-        <li><a href="#contacts">Контакти</a></li>
+        <li><a class="nav-link" href="#about">Про мене</a></li>
+        <li><a class="nav-link" href="#experience">Досвід роботи</a></li>
+        <li><a class="nav-link" href="#education">Освіта</a></li>
+        <li><a class="nav-link" href="#skills">Навички</a></li>
+        <li><a class="nav-link" href="#reviews">Відгуки</a></li>
+        <li><a class="nav-link" href="#contacts">Контакти</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <section id="about">
+    <section id="about" class="card">
       <h2>Про мене</h2>
       <p>
-        Студент 2 курсу, що вивчає вебтехнології. Цікавлюся <strong>фронтенд-розробкою</strong>
+        Студент 2 курсу, що вивчає вебтехнології. Цікавлюся
+        <strong class="highlight">фронтенд-розробкою</strong>
         та створенням зручних інтерфейсів. Швидко навчаюся та люблю працювати в команді.
       </p>
     </section>
 
-    <section id="experience">
+    <section id="experience" class="card">
       <h2>Досвід роботи</h2>
-      <article>
+      <article class="job">
         <h3>Стажер-фронтенд розробник</h3>
-        <p><em>ТОВ «Веб-Студія», Львів</em> — <time datetime="2025-06">червень 2025</time> – <time datetime="2025-09">вересень 2025</time></p>
+        <p class="meta"><em>ТОВ «Веб-Студія», Львів</em> — <time datetime="2025-06">червень 2025</time> – <time datetime="2025-09">вересень 2025</time></p>
         <ul>
           <li>Верстка адаптивних сторінок за макетами Figma.</li>
           <li>Виправлення помилок у наявних вебпроєктах.</li>
           <li>Участь у код-рев'ю та щоденних мітингах команди.</li>
         </ul>
       </article>
-      <article>
+      <article class="job">
         <h3>Фріланс-верстальник</h3>
-        <p><em>Самозайнятість</em> — <time datetime="2024-09">вересень 2024</time> – <time datetime="2025-05">травень 2025</time></p>
+        <p class="meta"><em>Самозайнятість</em> — <time datetime="2024-09">вересень 2024</time> – <time datetime="2025-05">травень 2025</time></p>
         <ul>
           <li>Створив 3 сайти-візитівки для локальних малих бізнесів.</li>
           <li>Налаштував публікацію сайтів на хостингу.</li>
@@ -51,11 +69,11 @@
       </article>
     </section>
 
-    <section id="education">
+    <section id="education" class="card">
       <h2>Освіта</h2>
       <article>
         <h3>Бакалавр, Кібербезпека та захист інформації</h3>
-        <p><em>Національний університет "Львівська Політехніка"</em> — <time datetime="2025">2025</time> – <time datetime="2029">2029</time></p>
+        <p class="meta"><em>Національний університет «Львівська політехніка»</em> — <time datetime="2025">2025</time> – <time datetime="2029">2029</time></p>
         <p>Основні дисципліни:</p>
         <ol>
           <li>Основи програмування</li>
@@ -65,10 +83,10 @@
       </article>
     </section>
 
-    <section id="skills">
+    <section id="skills" class="card">
       <h2>Навички</h2>
       <h3>Технічні</h3>
-      <ul>
+      <ul class="skills-list">
         <li>HTML, CSS, JavaScript, Python</li>
         <li>React, Vite</li>
         <li>Git, GitHub</li>
@@ -79,17 +97,52 @@
         <li>Англійська — B2</li>
       </ul>
     </section>
+    <section id="reviews" class="card">
+      <h2>Відгуки роботодавців</h2>
+      <p id="reviews-status" class="meta">Завантаження відгуків…</p>
+      <div id="reviews-list" class="reviews-list"></div>
+    </section>
   </main>
 
   <footer id="contacts">
     <h2>Контакти</h2>
     <address>
-      <p>Email: <a href="Serhii.Petruniak.KB.2025@lpnu.ua">Serhii.Petruniak.KB.2025@lpnu.ua</a></p>
+      <p>Email: <a href="mailto:Serhii.Petruniak.KB.2025@lpnu.ua">Serhii.Petruniak.KB.2025@lpnu.ua</a></p>
       <p>Телефон: <a href="tel:+380967923212">+38 096 792 32 12</a></p>
       <p>GitHub: <a href="https://github.com/dedinsylt52" target="_blank" rel="noopener noreferrer">github.com/dedinsylt52</a></p>
       <p>LinkedIn: <a href="https://www.linkedin.com/in/your-username" target="_blank" rel="noopener noreferrer">linkedin.com/in/your-username</a></p>
     </address>
-    <p><small>&copy; 2026 Сергій Петруняк </small></p>
+    <section class="sys-info">
+      <h3>Дані з localStorage</h3>
+      <dl id="storage-list" class="storage-list"></dl>
+    </section>
+    <!-- 3) Вбудований (inline) спосіб -->
+    <p style="opacity: 0.7; margin-top: 20px;"><small>&copy; 2026 Сергій Петруняк</small></p>
   </footer>
+
+  <!-- Модальне вікно зворотного зв'язку (відкривається через 1 хвилину) -->
+  <div id="feedback-modal" class="modal" hidden>
+    <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button id="modal-close" class="modal__close" type="button" aria-label="Закрити">×</button>
+      <h2 id="modal-title">Зворотний зв'язок</h2>
+      <form class="feedback-form" action="https://formspree.io/f/mjyyagga" method="POST">
+        <label>Ім'я
+          <input type="text" name="name" required>
+        </label>
+        <label>Email
+          <input type="email" name="email" required>
+        </label>
+        <label>Номер телефону
+          <input type="tel" name="phone" placeholder="+380…">
+        </label>
+        <label>Повідомлення
+          <textarea name="message" rows="4" required></textarea>
+        </label>
+        <button type="submit" class="btn">Надіслати</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
